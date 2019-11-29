@@ -3,17 +3,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myanmar_baydin/drawer/deviceinfo.dart';
-import 'package:myanmar_baydin/mahabook/maha_home.dart';
-import 'package:myanmar_baydin/provider/home_pro.dart';
 import 'package:myanmar_baydin/provider/provider_imports.dart';
+
+import 'ScopModel/home.dart';
+import 'http/HomeHttp.dart';
+import 'mix/login.dart';
+import 'mix/userprovider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.blue, // navigation bar color
     statusBarColor: Colors.transparent, // status bar color
   ));
-  runApp(MyApp());
+  runApp(Root());
 }
+
+class Root extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<UserProvider>(
+      builder: (context)=>UserProvider(),
+      child: MaterialApp(
+        home: Login(),
+      ),
+    );
+  }
+}
+
 
 class MyApp extends StatelessWidget {
 
